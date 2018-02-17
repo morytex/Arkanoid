@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class BallScript : MonoBehaviour {
 
@@ -28,6 +29,14 @@ public class BallScript : MonoBehaviour {
 
 		if (!isBallActive && playerObject != null) {
 			ballPosition.x = playerObject.transform.position.x;
+		}
+	}
+
+	void OnCollisionEnter2D (Collision2D c) {
+		if (c.gameObject.tag == "DeadEnd") {
+			Destroy (this.gameObject);
+
+			SceneManager.LoadScene ("StartScene");
 		}
 	}
 }
