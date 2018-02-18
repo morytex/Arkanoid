@@ -5,8 +5,6 @@ using UnityEngine.SceneManagement;
 
 public class BallScript : MonoBehaviour {
 
-	private bool isBallActive;
-	private Vector3 ballPosition;
 	private Vector2 ballInitialForce;
 	private Rigidbody2D rb;
 
@@ -15,21 +13,8 @@ public class BallScript : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		ballInitialForce = new Vector2 (100.0f, 300.0f);
-		isBallActive = false;
-		ballPosition = transform.position;
 		rb = GetComponent<Rigidbody2D> ();
-	}
-
-	// Update is called once per frame
-	void Update () {
-		if (Input.GetButtonDown("Jump") && !isBallActive) {
-			rb.AddForce (ballInitialForce);
-			isBallActive = true;
-		}
-
-		if (!isBallActive && playerObject != null) {
-			ballPosition.x = playerObject.transform.position.x;
-		}
+		rb.AddForce (ballInitialForce);
 	}
 
 	void OnCollisionEnter2D (Collision2D c) {
